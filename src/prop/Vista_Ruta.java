@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 public class Vista_Ruta extends javax.swing.JFrame {
 
     final map.Ruta example = new map.Ruta("PoliDriver");
-    Double distancia =0.0;
-    String tiempo = "";
-    String ganancia = "";
-    String gananciaPolidriver = "";
+    float distancia = 0;
+    float tiempo = 0;
+    float monto = 0;
+    float gananciaPolidriver = 0;
 
     //AbrirSite site = new AbrirSite();
     public Vista_Ruta() {
@@ -22,7 +22,7 @@ public class Vista_Ruta extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -65,11 +65,6 @@ public class Vista_Ruta extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar:", "Ibarra", "Guayaquil", "Latacunga", "Loja", "Quito", "Santo Domingo", " " }));
         jComboBox2.setToolTipText("");
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
         jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 130, -1));
 
         jButton2.setText("CALCULAR");
@@ -130,12 +125,13 @@ public class Vista_Ruta extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(1188, 600));
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
 
-        LatLng a = new LatLng(-0.209867, -78.488214);  // QUITO-POLI
+       
+LatLng a = new LatLng(-0.209867, -78.488214);  // QUITO-POLI
         LatLng b = new LatLng(-0.512975, -78.578170);	//MACHACHI
         LatLng c = new LatLng(-0.937311, -78.642562);	//LATACUNGA
         LatLng d = new LatLng(-1.283683, -78.630819);  // AMBATO
@@ -167,10 +163,10 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(a);
                 example.generateMarker(j);
 
-                distancia= example.calcularDistancia(a, j);
-                tiempo = "11h23m";
-                ganancia = "$45.19";
-                gananciaPolidriver = "$9.09";
+                distancia = example.calcularDistancia(a, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
 //example.generateSimplePath(Quito, Loja, true);
             } else if (jComboBox3.getSelectedItem() == "Santo Domingo") {
@@ -181,10 +177,10 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(a);
                 example.generateMarker(q);
 
-                //distancia = "151km";
-                tiempo = "2h57m";
-                ganancia = "$9.43";
-                gananciaPolidriver = "$1.89";
+                distancia = example.calcularDistancia(a, q);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
                 //example.generateSimplePath(Quito, Guayaquil, true);
             } else if (jComboBox3.getSelectedItem() == "Guayaquil") {
@@ -198,10 +194,10 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(a);
                 example.generateMarker(t);
 
-                //distancia = "437km";
-                tiempo = "7h44m";
-                ganancia = "$26.31";
-                gananciaPolidriver = "$5.26";
+                distancia = example.calcularDistancia(a, t);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Guayaquil, true);
             } else if (jComboBox3.getSelectedItem() == "Latacunga") {
 
@@ -211,27 +207,27 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(a);
                 example.generateMarker(c);
 
-               // distancia = "110km";
-                tiempo = "1h50m";
-                ganancia = "$6.52";
-                gananciaPolidriver = "$1.30";
+                distancia = example.calcularDistancia(a, c);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Latacunga, true);
             } else if (jComboBox3.getSelectedItem() == "Ibarra") {
-            
+
                 example.generarRuta(a, u, false);
 
                 example.generateMarker(a);
                 example.generateMarker(u);
 
-               // distancia = "113km";
-                tiempo = "2h15m";
-                ganancia = "$6.72";
-                gananciaPolidriver = "$1.34";
+                distancia = example.calcularDistancia(a, u);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             }
         } else if (jComboBox2.getSelectedItem() == "Loja") {
             if (jComboBox3.getSelectedItem() == "Quito") {
-                
+
                 example.generarRuta(j, i, false);
                 example.generarRuta(i, h, false);
                 example.generarRuta(h, g, false);
@@ -245,13 +241,11 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(j);
                 example.generateMarker(a);
 
-               // distancia = "723km";
-                tiempo = "11h23m";
-                ganancia = "$45.19";
-                gananciaPolidriver = "$9.09";
-
+                distancia = example.calcularDistancia(a, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
             } else if (jComboBox3.getSelectedItem() == "Guayaquil") {
-               
 
                 example.generarRuta(j, i, false);
                 example.generarRuta(i, h, false);
@@ -260,13 +254,13 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(j);
                 example.generateMarker(t);
 
-                //distancia = "403km";
-                tiempo = "6h45m";
-                ganancia = "$25.19";
-                gananciaPolidriver = "$5.04";
+                distancia = example.calcularDistancia(j, t);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Santo Domingo") {
-                
+
                 example.generarRuta(j, i, false);
                 example.generarRuta(i, h, false);
                 example.generarRuta(h, t, false);
@@ -277,13 +271,13 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(j);
                 example.generateMarker(q);
 
-                //distancia = "638km";
-                tiempo = "10h37m";
-                ganancia = "$39.87";
-                gananciaPolidriver = "$7.97";
+                distancia = example.calcularDistancia(q, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Latacunga") {
-               
+
                 example.generarRuta(j, i, false);
                 example.generarRuta(i, h, false);
                 example.generarRuta(h, e, false);
@@ -293,13 +287,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(j);
                 example.generateMarker(c);
 
-                //distancia = "561km";
-                tiempo = "9h40m";
-                ganancia = "$35.06";
-                gananciaPolidriver = "$7.01";
+                distancia = example.calcularDistancia(c, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Ibarra") {
-               
 
                 example.generarRuta(j, i, false);
                 example.generarRuta(i, h, false);
@@ -312,15 +305,15 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(j);
                 example.generateMarker(u);
 
-               // distancia = "776km";
-                tiempo = "12h44m";
-                ganancia = "$48.50";
-                gananciaPolidriver = "$9.70";
+                // distancia = "776km";
+                distancia = example.calcularDistancia(u, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
             }
 
         } else if (jComboBox2.getSelectedItem() == "Guayaquil") {
             if (jComboBox3.getSelectedItem() == "Quito") {
-                
 
                 example.generarRuta(t, s, false);
                 example.generarRuta(s, r, false);
@@ -331,13 +324,13 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(t);
                 example.generateMarker(a);
 
-                //distancia = "437km";
-                tiempo = "7h44m";
-                ganancia = "$26.31";
-                gananciaPolidriver = "$5.26";
+                distancia = example.calcularDistancia(a, t);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Santo Domingo") {
-               
+
                 example.generarRuta(t, s, false);
                 example.generarRuta(s, r, false);
                 example.generarRuta(r, q, false);
@@ -345,10 +338,10 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(t);
                 example.generateMarker(q);
 
-                //distancia = "282km";
-                tiempo = "4h55m";
-                ganancia = "$17.62";
-                gananciaPolidriver = "$3.52";
+                distancia = example.calcularDistancia(t, q);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Loja") {
                 example.generarRuta(t, h, false);
@@ -358,13 +351,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(t);
                 example.generateMarker(j);
 
-                //distancia = "403km";
-                tiempo = "6h45m";
-                ganancia = "$25.19";
-                gananciaPolidriver = "$5.04";
-
+                distancia = example.calcularDistancia(t, h);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
             } else if (jComboBox3.getSelectedItem() == "Latacunga") {
-         
+
                 example.generarRuta(t, s, false);
                 example.generarRuta(s, r, false);
                 example.generarRuta(r, c, false);
@@ -372,13 +364,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(t);
                 example.generateMarker(c);
 
-               // distancia = "316km";
-                tiempo = "5h43m";
-                ganancia = "$19.72";
-                gananciaPolidriver = "$3.94";
+                distancia = example.calcularDistancia(t, c);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Ibarra") {
-                
 
                 example.generarRuta(t, s, false);
                 example.generarRuta(s, r, false);
@@ -390,26 +381,26 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(t);
                 example.generateMarker(u);
 
-               // distancia = "542km";
-                tiempo = "9h35";
-                ganancia = "$33.07";
-                gananciaPolidriver = "$6.61";
+                distancia = example.calcularDistancia(t, u);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             }
         } else if (jComboBox2.getSelectedItem() == "Ibarra") {
             if (jComboBox3.getSelectedItem() == "Quito") {
-             
+
                 example.generarRuta(u, a, false);
 
                 example.generateMarker(u);
                 example.generateMarker(a);
 
-               // distancia = "113km";
-                tiempo = "2h15m";
-                ganancia = "$6.72";
-                gananciaPolidriver = "$1.34";
+                distancia = example.calcularDistancia(a, u);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
+
             } else if (jComboBox3.getSelectedItem() == "Guayaquil") {
-              
 
                 example.generarRuta(u, a, false);
                 example.generarRuta(a, b, false);
@@ -418,17 +409,16 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generarRuta(r, s, false);
                 example.generarRuta(s, t, false);
 
-                //distancia = "542km";
-                tiempo = "9h35";
-                ganancia = "$33.07";
-                gananciaPolidriver = "$6.61";
+                distancia = example.calcularDistancia(u, t);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
                 example.generateMarker(u);
                 example.generateMarker(t);
 
                 //example.generateSimplePath(Quito, Guayaquil, true);
             } else if (jComboBox3.getSelectedItem() == "Latacunga") {
-                
 
                 example.generarRuta(u, a, false);
                 example.generarRuta(a, b, false);
@@ -437,13 +427,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(u);
                 example.generateMarker(c);
 
-               // distancia = "212km";
-                tiempo = "3h2m";
-                ganancia = "$13.28";
-                gananciaPolidriver = "$2.66";
+                distancia = example.calcularDistancia(a, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Latacunga, true);
             } else if (jComboBox3.getSelectedItem() == "Loja") {
-                
 
                 example.generarRuta(u, a, false);
                 example.generarRuta(a, b, false);
@@ -459,13 +448,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(u);
                 example.generateMarker(j);
 
-                //distancia = "776km";
-                tiempo = "12h44m";
-                ganancia = "$48.50";
-                gananciaPolidriver = "$9.70";
+                distancia = example.calcularDistancia(j, u);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Santo Domingo") {
-                
 
                 example.generarRuta(u, a, false);
                 example.generarRuta(a, v, false);
@@ -474,32 +462,28 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(u);
                 example.generateMarker(q);
 
-              //  distancia = "266km";
-                tiempo = "4h48m";
-                ganancia = "$16.62";
-                gananciaPolidriver = "$3.32";
-
+                distancia = example.calcularDistancia(q, u);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Guayaquil, true);
             }
         } else if (jComboBox2.getSelectedItem() == "Santo Domingo") {
             if (jComboBox3.getSelectedItem() == "Ibarra") {
 
-            
-
                 example.generarRuta(q, v, false);
                 example.generarRuta(v, a, false);
                 example.generarRuta(a, u, false);
 
-                example.generateMarker(a);
+                example.generateMarker(q);
                 example.generateMarker(u);
 
-                //distancia = "266km";
-                tiempo = "4h48m";
-                ganancia = "$16.62";
-                gananciaPolidriver = "$3.32";
+                distancia = example.calcularDistancia(u,q);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Guayaquil, true);
             } else if (jComboBox3.getSelectedItem() == "Guayaquil") {
-               
 
                 example.generarRuta(q, r, false);
                 example.generarRuta(r, s, false);
@@ -508,13 +492,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(q);
                 example.generateMarker(t);
 
-                //distancia = "282km";
-                tiempo = "4h55m";
-                ganancia = "$17.62";
-                gananciaPolidriver = "$3.52";
+                distancia = example.calcularDistancia(q, t);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Latacunga") {
-               
 
                 example.generarRuta(q, b, false);
                 example.generarRuta(b, c, false);
@@ -522,13 +505,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(q);
                 example.generateMarker(c);
 
-               // distancia = "161km";
-                tiempo = "3h01m";
-                ganancia = "$10.06";
-                gananciaPolidriver = "$2.01";
+                distancia = example.calcularDistancia(c, q);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Loja") {
-                
 
                 example.generarRuta(q, r, false);
                 example.generarRuta(r, s, false);
@@ -540,28 +522,27 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(q);
                 example.generateMarker(j);
 
-               // distancia = "638km";
-                tiempo = "10h37m";
-                ganancia = "$39.87";
-                gananciaPolidriver = "$7.97";
+                distancia = example.calcularDistancia(q, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Quito") {
-              
+
                 example.generarRuta(q, v, false);
                 example.generarRuta(v, a, false);
 
                 example.generateMarker(q);
                 example.generateMarker(a);
 
-                //distancia = "151km";
-                tiempo = "2h57m";
-                ganancia = "$9.43";
-                gananciaPolidriver = "$1.89";
+                distancia = example.calcularDistancia(a, q);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Guayaquil, true);
             }
         } else if (jComboBox2.getSelectedItem() == "Latacunga") {
             if (jComboBox3.getSelectedItem() == "Ibarra") {
-               
 
                 example.generarRuta(c, b, false);
                 example.generarRuta(b, a, false);
@@ -570,13 +551,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(c);
                 example.generateMarker(u);
 
-               // distancia = "212km";
-                tiempo = "3h2m";
-                ganancia = "$13.28";
-                gananciaPolidriver = "$2.66";
+                distancia = example.calcularDistancia(c, u);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             } else if (jComboBox3.getSelectedItem() == "Guayaquil") {
-                
 
                 example.generarRuta(c, r, false);
                 example.generarRuta(r, s, false);
@@ -585,12 +565,11 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(c);
                 example.generateMarker(t);
 
-                //distancia = "316km";
-                tiempo = "5h43m";
-                ganancia = "$19.72";
-                gananciaPolidriver = "$3.94";
+                distancia = example.calcularDistancia(c, t);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
             } else if (jComboBox3.getSelectedItem() == "Loja") {
-               
 
                 example.generarRuta(c, d, false);
                 example.generarRuta(d, e, false);
@@ -601,13 +580,12 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(c);
                 example.generateMarker(j);
 
-                //distancia = "561km";
-                tiempo = "9h40m";
-                ganancia = "$35.06";
-                gananciaPolidriver = "$7.01";
+                distancia = example.calcularDistancia(c, j);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Latacunga, true);
             } else if (jComboBox3.getSelectedItem() == "Quito") {
-                
 
                 example.generarRuta(c, b, false);
                 example.generarRuta(b, a, false);
@@ -615,53 +593,47 @@ public class Vista_Ruta extends javax.swing.JFrame {
                 example.generateMarker(c);
                 example.generateMarker(a);
 
-              //  distancia = "110km";
-                tiempo = "1h50m";
-                ganancia = "$6.52";
-                gananciaPolidriver = "$1.30";
+                distancia = example.calcularDistancia(a, c);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
                 //example.generateSimplePath(Quito, Latacunga, true);
             } else if (jComboBox3.getSelectedItem() == "Santo Domingo") {
-                
+
                 example.generarRuta(c, b, false);
                 example.generarRuta(b, q, false);
 
                 example.generateMarker(c);
                 example.generateMarker(q);
 
-                //distancia = "161km";
-                tiempo = "3h01m";
-                ganancia = "$10.06";
-                gananciaPolidriver = "$2.01";
+                distancia = example.calcularDistancia(c, q);
+                tiempo = example.calcularTiempo(distancia);
+                gananciaPolidriver = example.calcularGananciaAPP(distancia);
+                monto = example.calcularMonto(distancia, gananciaPolidriver);
 
             }
 
         }
-
         jTextField3.setText(String.valueOf(distancia));
-        jTextField4.setText(tiempo);
-        jTextField2.setText(ganancia);
-        jTextField1.setText(gananciaPolidriver);
+        jTextField4.setText(String.valueOf(tiempo));
+        jTextField2.setText(String.valueOf(monto));
+        jTextField1.setText(String.valueOf(gananciaPolidriver));
         jComboBox2.enable(false);
         jComboBox3.enable(false);
 
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-       
-        
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
-public void activarElementos(){
-jComboBox2.enable();
-jComboBox3.enable();
-jButton1.enable();
-}
+    }                                        
+    public void activarElementos() {
+        jComboBox2.enable();
+        jComboBox3.enable();
+        jButton1.enable();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -699,11 +671,11 @@ jButton1.enable();
 
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    public javax.swing.JComboBox jComboBox2;
+    public javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -717,6 +689,6 @@ jButton1.enable();
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }
